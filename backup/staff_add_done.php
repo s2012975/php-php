@@ -22,6 +22,27 @@ $user = 'root';
 $password = '';
 $dbh = new POD(dsn, $user, $password);
 $dbh -> setAttribute(PDO::ATTR_ERRMODE, POD::ERRMODE_EXCEPTION);
+$spl = 'INSERT INTO mst_staff(name,password) VALUES (?,?)';
+$stmt = $dbh -> prepare($sql);
+$data[] = $staff_name;
+$data[] = $staff_pass;
+$stmt->execute($data);
+
+$dbh = null;
+
+print $staff_name;
+print'さんを追加しました。<br />';
+
+}
+catch(Exception $e)
+{
+    print'只今障害により大変ご迷惑をおかけしております。';
+    exit();
+}
+
+?>
+
+<a href="staff_list.php">戻る</a>
 
 </body>
 </html>
